@@ -7,12 +7,8 @@
 	"authors": [
 		"TheRealAlphaDuck"
 	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
 	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/disable_end/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -20,15 +16,12 @@
 		]
 	},
 	"mixins": [
-		"modid.mixins.json"
+		"disableend.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.9",
-		"minecraft": ">=1.21.4",
-		"java": ">=21",
-		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
+		"fabricloader": ">=0.14.0",
+		"minecraft": "${minecraft}",
+		"java": ">=${java}",
+		"${fapi_id}": "*"
 	}
 }

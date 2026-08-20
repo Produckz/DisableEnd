@@ -2,24 +2,34 @@ package com.disableend;
 
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
+//? if >=1.21.11 {
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.gamerules.GameRule;
+//?} else {
+/*import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
-import net.minecraft.world.GameRules;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.minecraft.world.level.GameRules;
+*///?}
 
 public class DisableEnd implements ModInitializer {
-	public static final String MOD_ID = "disable_end";
+    public static final String MOD_ID = "disable_end";
 
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final GameRules.Key<GameRules.BooleanRule> DISABLE_END = GameRuleRegistry.register("disableEnd", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(false));
+    //? if >=1.21.11 {
+    public static GameRule<Boolean> DISABLE_END;
+    //?} else {
+    /*public static GameRules.Key<GameRules.BooleanValue> DISABLE_END;
+    *///?}
 
-
-	@Override
-	public void onInitialize() {
-	}
-
+    @Override
+    public void onInitialize() {
+        //? if >=1.21.11 {
+        // Default namespace until MC-303846 lets /gamerule accept namespaced ids
+        DISABLE_END = GameRuleBuilder.forBoolean(false)
+                .buildAndRegister(Identifier.withDefaultNamespace("disable_end"));
+        //?} else {
+        /*DISABLE_END = GameRuleRegistry.register("disable_end", GameRules.Category.MISC,
+                GameRuleFactory.createBooleanRule(false));
+        *///?}
+    }
 }
